@@ -10,7 +10,9 @@ router.post("", async (req, res) => {
       !req.body.title ||
       !req.body.author ||
       !req.body.publishYear ||
-      !req.body.pageCount
+      !req.body.pageCount||
+      !req.body.genre ||
+      !req.body.pdfLink
     ) {
       return res.status(400).send({ message: "send all required fields" });
     }
