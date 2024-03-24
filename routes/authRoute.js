@@ -1,10 +1,11 @@
 import express from "express";
 import { User } from "../models/userModel.js";
 import bcryptjs from "bcryptjs";
+import { errorHandler } from "../utils/error.js";
 
 const router = express.Router();
 
-router.post("/signup", async (req, res) => {
+router.post("/signup", async (req, res, next) => {
   try {
     const users = await User.find({});
 
@@ -24,7 +25,7 @@ router.post("/signup", async (req, res) => {
     const user = await User.create(securedUser);
     res.status(201).json({ message: "User created succesfully!", body: user });
   } catch (error) {
-    res.status(500).send({ message: error.message });
+    next(error);
   }
 });
 
