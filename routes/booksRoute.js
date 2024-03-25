@@ -10,15 +10,19 @@ router.post("", async (req, res) => {
       !req.body.title ||
       !req.body.author ||
       !req.body.publishYear ||
-      !req.body.pageCount||
+      !req.body.pageCount ||
       !req.body.genre ||
-      !req.body.pdfLink
+      !req.body.pdfLink ||
+      !req.body.userId
     ) {
       return res.status(400).send({ message: "send all required fields" });
     }
     const book = await Book.create(req.body);
 
-    res.status(201).send(book);
+    res.status(201).send({
+      message: "book created succesfully",
+      body: book,
+    });
   } catch (error) {
     res.status(500).send({ message: error.message });
   }
@@ -84,6 +88,5 @@ router.delete("/:id", async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
-
 
 export default router;

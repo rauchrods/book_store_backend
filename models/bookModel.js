@@ -18,14 +18,18 @@ const bookSchema = mongoose.Schema(
       type: Number,
       required: true,
     },
-    genre:{
+    genre: {
       type: String,
       required: true,
     },
-    pdfLink:{
+    pdfLink: {
       type: String,
       required: true,
-    }
+    },
+    userId: {
+      type: String,
+      required: true,
+    },
   },
   { timestamps: true }
 );
