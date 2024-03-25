@@ -41,7 +41,7 @@ router.get("", async (req, res) => {
   }
 });
 
-//get book by id
+//get book by book id
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
@@ -54,6 +54,24 @@ router.get("/:id", async (req, res) => {
     res.status(500).send({ message: error.message });
   }
 });
+
+//get book by user id
+router.get("/userId/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const books = await Book.find({userId: id});
+    if (!books || books.length === 0) {
+      return res.status(500).send({ message: "id not present in database" });
+    }
+    res.status(201).send({
+      count: books.length,
+      body: books
+    });
+  } catch (error) {
+    res.status(500).send({ message: error.message });
+  }
+});
+
 
 //update a book by id
 router.put("/:id", async (req, res) => {
