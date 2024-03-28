@@ -55,7 +55,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-//get book by user id
+//get books by user id
 router.get("/userId/:id", async (req, res) => {
   try {
     const { id } = req.params;
