@@ -28,9 +28,11 @@ router.get("/:id", async (req, res) => {
       throw new Error("User not found");
     }
 
+    const { password, ...securedUser } = user._doc;
+
     res.status(200).json({
       message: "User found succesfully!!",
-      body: user,
+      body: securedUser,
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
